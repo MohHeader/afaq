@@ -1,0 +1,22 @@
+﻿<div dir="rtl">
+  <h1>الاقساط</h1>
+  <p>
+    Today is : <%= Date.current %>
+  </p>
+
+  <%= form_tag '',id: "tower_id" ,:method => :get do %>
+    <%= label_tag "برج" %>
+    <%= select_tag 'tower_select',options_from_collection_for_select(Tower.all , "id", "name",params[:tower_select]), :include_blank => true, :onchange =>"$('#tower_id').submit()" %>
+  <% end %>
+
+  <div class="ui-widget">
+    <%= form_tag installments_path, :method => 'get' do %>
+      <%= text_field_tag :buyer_name %>
+      <%= hidden_field_tag :id %>
+      <%= submit_tag "بحث بالاسم", :name => nil %>
+    <% end %>
+  </div>
+   
+  <br>
+  <%= render 'installments' %>
+</div>

@@ -1,0 +1,12 @@
+﻿Add new floors
+
+Freindly Routings : t/:id/:unit_id [Unit + Contract]
+Instalmments Payment Panel[ Partial Payment ]
+Payment date
+Contracts Show All with Filtration
+Search by buyer name
+Sellers User profile
+
+------------------------------
+
+NEW ::: 

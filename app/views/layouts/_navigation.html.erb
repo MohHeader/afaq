@@ -1,0 +1,24 @@
+﻿<div class="pull-right">
+<ul class="nav">
+  <% if @current_user %>
+    <li>
+      <%= form_tag logout_path do %>
+      <%= submit_tag "خروج", class: "btn btn-danger" %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "قائمة البائعين", sellers_path, :target => "_blank" %>
+    </li>
+    <li>
+      <%= link_to "متابعة الاقساط", installments_path %>
+    </li>
+    <li>
+      <%= link_to "متابعة العقود", allcontracts_path %>
+    </li>
+    <li>
+      <%= link_to "قائمة الابراج", towers_path %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "الرئيسية", root_path, :class => 'brand' %>
+</div>

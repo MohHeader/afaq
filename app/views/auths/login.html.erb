@@ -1,0 +1,22 @@
+﻿<% unless @nouser %>
+  <h1>Please Enter Password</h1>
+  <%= form_tag password_path, class: "form-search" do %>
+    <%= label_tag :name %> 
+    <%= text_field_tag :name, nil, :class => 'search-query' %><br>
+    
+    <%= label_tag :password %> 
+    <% unless @password %>
+      <%= password_field_tag :password,@password, :class => 'search-query' %>
+    <% else %>
+      <%= text_field_tag :password, @password, :class => 'search-query' %>
+    <% end %>
+    
+    <%= check_box_tag :changepass, nil,@password ,'data-toggle'=>'tooltip', 'title'=>"Show Password" %>
+    
+    <%= submit_tag "Login", class: "btn" %>
+    
+  <% end %>
+  
+<% else %>
+  <%= @nouser %>
+<% end %>

@@ -1,0 +1,73 @@
+﻿<%= form_for @tower, :validate => true do |f| %>
+  <% if @tower.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tower.errors.count, "error") %> prohibited this tower from being saved:</h2>
+
+      <ul>
+      <% @tower.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, "اسم البرج" %>
+    <%= f.text_field :name %>
+  </div>
+  
+  
+  <div id="partners" >
+    <h1>الشركاء</h1>
+    <a href="#" class="add">اضافة شريك <%= image_tag('add.png')%></a>
+    <div class="items">
+      <%= f.nested_fields_for :partners do |builder| %>
+        <%= render 'partner_fields', f: builder %>
+      <% end %>
+    </div>
+  </div>
+  <hr>
+  <div id="stores" >
+    <h1>المحلات</h1>
+    <br/><a href="#" class="add">اضافة نموذج محل <%= image_tag('add.png')%></a>
+    <div class="items">
+      <%= f.nested_fields_for :units do |builder| %>
+        <%= render 'unit_fields', f: builder, unit_type: "store" %>
+      <% end %>
+    </div>
+    
+  </div>
+  <hr>
+  <div id="offices">
+    <h1>نماذج المكاتب</h1> 
+    <%= f.label :o_floors, "عدد الادوار" %>
+    <%= f.text_field :o_floors %>
+    <br/><a href="#" class="add">اضافة نموذج مكتب <%= image_tag('add.png')%></a>
+    <div class="items">
+      <%= f.nested_fields_for :units do |builder| %>
+        <%= render 'unit_fields', :f => builder, unit_type: 'office' %>
+      <% end %>
+    </div>
+    
+  </div>
+  <hr>
+  <div id="homes">
+    <h1>نماذج السكني</h1>
+    <%= f.label :h_floors, "عدد الادوار" %>
+    <%= f.text_field :h_floors %>
+    <br/><a href="#" class="add">اضافة نموذج سكني <%= image_tag('add.png')%></a>
+    <div class="items">
+      <%= f.nested_fields_for :units do |builder| %>
+        <%= render 'unit_fields', :f => builder, unit_type: 'home'%>
+      <% end %>
+    </div>
+  </div>
+  <hr>
+  
+
+  
+  
+  <div class="actions pull-left">
+    <%= f.submit "اضافة البرج", class: "btn btn-success btn-large" %>
+  </div>
+<% end %>

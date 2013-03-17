@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Contract:</b>
+  <%= @installment.contract_id %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @installment.amount %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @installment.date %>
+</p>
+
+<p>
+  <b>Paid:</b>
+  <%= @installment.paid %>
+</p>
+
+
+<%= link_to 'Edit', edit_installment_path(@installment) %> |
+<%= link_to 'Back', installments_path %>

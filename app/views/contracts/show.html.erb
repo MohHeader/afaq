@@ -1,0 +1,81 @@
+﻿<div direction="rtl" style="text-align:right" >
+<p id="notice"><%= notice %></p>
+<%= link_to 'Edit', edit_tower_contract_path(@tower, @contract) %> |
+<%= link_to 'العودة الى البرج', tower_path(@tower) %>
+<p>
+  <b>البرج:</b>
+  <%= @contract.unit.tower.name %>
+</p>
+
+<p>
+  <b>نسخة العقد:</b>
+  <%= link_to "تحميل",@contract.file.url, target: "_blank" %>
+</p>
+
+<p>
+  <b>الوحدة:</b>
+  <%= @contract.unit.code %>
+</p>
+
+<p>
+  <b>حصة:</b>
+  <%= @contract.unit.partner.name %>
+</p>
+
+<p>
+  <b>المشتري:</b>
+  <%= @contract.buyer_name %> 
+| 
+  <%= @contract.buyer_phone %>
+</p>
+
+<p>
+  <b>البائع:</b>
+  <%= @contract.seller.name %>
+</p>
+
+<p>
+  <b>التشطيب:</b>
+  <%= @contract.finishing.name %>
+</p>
+<p>
+  <b>سعر المتر:</b>
+  <%= @contract.meter_price %>
+</p>
+<p>
+  <b>اجمالي السعر:</b>
+  <%= @contract.total_price %>
+</p>
+
+<p>
+  <b>ملاحظات:</b>
+  <pre>
+  <%= sanitize @contract.note %>
+  </pre>
+</p>
+
+<h1>الاقساط</h1>
+<p>
+  النهاردة هو : <%= Date.current %>
+</p>
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>Amount</th>
+    <th>Date</th>
+    <th>Paid</th>
+  </tr>
+<% @installments.each do |installment| %>
+  <% if installment.paid %>
+    <tr style="color:green;background:lightgray;">
+  <% elsif installment.date < Date.current %>
+    <tr style="color:red;background:black;">
+  <% else %>
+    <tr>
+  <% end %>
+    <td><%= number_to_currency(installment.amount,unit: "EGP ", precision: 0) %></td>
+    <td><%= installment.date %></td>
+    <td><%= image_tag("#{installment.paid}.png") %></td>
+  </tr>
+<% end %>
+
+</div>

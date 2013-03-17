@@ -1,0 +1,2 @@
+module FinishingsHelper
+end

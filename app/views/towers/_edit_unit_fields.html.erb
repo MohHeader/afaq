@@ -1,0 +1,7 @@
+﻿<div class="item">
+    <%= f.text_field :code,:readonly => true %>
+    <%= f.select :partner_id, @tower.partners.all.map{ |c| [c.name, c.id] } %>
+    <%= f.hidden_field :id %>
+    <%= f.hidden_field :_destroy %>
+    <%= f.hidden_field :number %>
+</div>

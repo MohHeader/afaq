@@ -1,0 +1,26 @@
+﻿<div dir="rtl">
+<h1>قائمة البائعين</h1>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>الاسم</th>
+    <th>Email</th>
+    <th>الهاتف</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sellers.each do |seller| %>
+  <tr>
+    <td><%= seller.name %></td>
+    <td><%= seller.email %></td>
+    <td><%= seller.phone %></td>
+    <td><%= link_to image_tag('edit.png'), edit_seller_path(seller) %></td>
+    <td><%= link_to image_tag('delete.png'), seller, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+</div>
+<%= link_to 'اضافة بائع', new_seller_path , class: "btn" %>

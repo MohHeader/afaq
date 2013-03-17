@@ -1,0 +1,13 @@
+﻿<div dir="rtl">
+<h1>قائمة العقود لبرج : 
+<%= @tower.name %>
+</h1>
+
+<%= render 'index' %>
+
+<br />
+<div class="pull-left">
+<%= link_to 'اضافة عقد', new_tower_contract_path(@tower), class: "btn btn-success" %>
+<%= link_to 'العودة الى البرج', tower_path(@tower), class: "btn" %>
+</div>
+</div>

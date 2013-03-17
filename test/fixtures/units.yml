@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  number: 1
+  buyer_id: 1
+  seller_id: 1
+  tower_id: 1
+  total_cost: 1
+  finishing_id: 1
+
+two:
+  number: 1
+  buyer_id: 1
+  seller_id: 1
+  tower_id: 1
+  total_cost: 1
+  finishing_id: 1

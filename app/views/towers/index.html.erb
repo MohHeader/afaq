@@ -1,0 +1,19 @@
+﻿<p id="notice"><%= notice %></p>
+<h1 class="pull-right">الابراج</h1>
+<div class="clearfix"></div>
+<hr>
+<ul class="thumbnails pull-right">
+<% @towers.each do |tower| %>
+
+  <li class="span4 pull-right" style="text-align:right">
+    <b><%= link_to tower.name, tower %></b>
+    <%= link_to image_tag('edit.png'), edit_tower_path(tower) %>
+    <%= link_to image_tag('delete.png'), tower, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </li>
+<% end %>
+</ul>
+
+<br />
+<div class="buktton pull-left">
+<%= link_to 'اضافة برج', new_tower_path, class: "btn" %>
+</div>

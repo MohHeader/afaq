@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  unit_id: 1
+  amount: 1
+  date: 2013-01-30
+  paid: false
+
+two:
+  unit_id: 1
+  amount: 1
+  date: 2013-01-30
+  paid: false

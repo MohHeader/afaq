@@ -1,0 +1,37 @@
+﻿<table dir="rtl">
+  <tr>
+    <th class="text">م</th>
+    <% unless @tower %>
+        <th class="text">البرج</th>
+    <% end %>
+    <th class="text">رقم الوحدة</th>
+    <th class="text">اجمالي السعر</th>
+    <th class="text">سعر المتر</th>
+    <th class="text">المشتري</th>
+    <th class="text">البائع</th>
+    <th class="text">التشطيب</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @contracts.each do |contract| %>
+  <tr class="<%= cycle('even', 'odd') %>">
+    <td class="text"><%= contract.id %></td>
+    <% unless @tower %>
+        <td class="text"><%= contract.unit.tower.name %></td>
+    <% end %>
+    <td class="text"><%= contract.unit.code %></td>
+    <td class="text"><%= number_to_currency(contract.total_price ,unit: "EGP ", precision: 0 ) %></td>
+    <td class="text"><%= number_to_currency(contract.meter_price,unit: "EGP ", precision: 0) %></td> 
+    <td class="text"><%= contract.buyer_name %></td>
+    <td class="text"><%= contract.seller.name %></td>
+    <td class="text"><%= contract.finishing.name %></td>
+    <td><%= link_to '<i class="icon-zoom-in"></i>'.html_safe, tower_contract_path(contract.unit.tower, contract) %></td>
+    <td><%= link_to image_tag('edit.png'), edit_tower_contract_path(contract.unit.tower, contract) %></td>
+    <td><%= link_to image_tag('delete.png'), tower_contract_path(contract.unit.tower, contract), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+  
+  </tr>
+<% end %>
+</table>

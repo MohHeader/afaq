@@ -1,0 +1,44 @@
+﻿<table class="table table-bordered table-hover">
+  <tr>
+    <th style="text-align:right">تاريخ</th>
+    <th style="text-align:right">قيمة</th>
+    <th style="text-align:right">اسم المشتري</th>
+    <th style="text-align:right">البرج</th>
+    <th style="text-align:right">الوحدة</th>
+    <th style="text-align:right">حصة</th>
+    <th style="text-align:right">هاتف المشتري</th>
+    <th style="text-align:right">البائع</th>
+    <th style="text-align:right">سدد</th>
+  </tr>
+
+<% @installments.each do |installment| %>
+  <% if installment.paid %>
+    <tr style="color:green;background:lightgray;">
+  <% elsif installment.date < Date.current %>
+    <tr style="color:red;background:black;">
+  <% else %>
+    <tr>
+  <% end %>
+    <td><%= installment.date %></td>
+    <td><%= number_to_currency(installment.amount,unit: "EGP ", precision: 0) %></td>
+    <td><%= link_to installment.contract.buyer_name, tower_contract_path(installment.contract.unit.tower, installment.contract) %></td>
+    <td><%= link_to installment.contract.unit.tower.name,tower_path(installment.contract.unit.tower) %></td>
+    <td><%= installment.contract.unit.code %></td>    
+    <td><%= installment.contract.unit.partner.name %></td>
+    <td><%= installment.contract.buyer_phone %></td> 
+    <td><%= installment.contract.seller.name %></td>
+    <td>
+      <% if installment.paid%>
+        <%= link_to image_tag("#{installment.paid}.png"), pay_installment_path(installment), method: :post %>
+      <% else %>
+        <%= link_to '<i class="icon-check"></i>'.html_safe, pay_installment_path(installment), method: :post %>
+      <% end %>
+    </td>
+    <!--
+    <td><%= link_to 'Show', installment %></td>
+    <td><%= link_to 'Edit', edit_installment_path(installment) %></td>
+    <td><%= link_to 'Destroy', installment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    -->
+  </tr>
+<% end %>
+</table>

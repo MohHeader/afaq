@@ -1,0 +1,38 @@
+﻿<div dir="rtl">
+ <div class="span3">
+    <%= form_tag '',id: "tower_id" ,:method => :get do %>
+      <%= label_tag "اختيار البرج" %>
+      <%= select_tag 'tower_select',options_from_collection_for_select(Tower.all , "id", "name",@tower.id), :onchange =>"$('#tower_id').submit()" %>
+    <% end %>
+    </div>
+  <h1>برج : <%= @tower.name %></h1>
+  <br>
+  <p id="notice"><%= notice %></p>
+  
+  <div class="clearfix"></div>
+
+   
+
+
+  <div class="btn">
+    <%= link_to '<i class="icon-align-justify"></i> العقود المبرمة'.html_safe, tower_contracts_path(@tower) %>
+  </div>
+
+  <br> 
+  <div class="btn btn-warning">
+    <%= link_to "توزيع الوحدات على الشركاء", edit_individual_tower_path(@tower) %>
+  </div>
+  <br>
+
+  <hr>
+  <div class="pull-left">
+    <%= form_tag '',id: "form_id" ,:method => :get do %>
+      <%= label_tag "فلتر" %>
+      <%= select_tag 'partner_filter',options_from_collection_for_select(@tower.partners , "id", "name",params[:partner_filter]), :include_blank => true, :onchange =>"$('#form_id').submit()" %>
+    <% end %>
+  </div>
+  <div class="clearfix"></div>
+  <div style="text-align:right">
+    <%= render "towers/units" %>
+  </div>
+</div>

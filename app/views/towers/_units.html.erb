@@ -1,0 +1,60 @@
+﻿<div class="row pull-right">
+  <div class="span4">
+    <h1>النماذج الغير مباعة</h1>
+    <table class="table table-bordered table-hover">
+      <tr>
+        <th>رقم الوحدة</th>
+        <th>حصة</th>
+        <th>سعر المتر</th>
+        <th></th>
+      </tr>
+    <% @unit_floors_unsold.each do |floor, units| %>
+      <% units.each do |unit| %>
+        <tr>
+          <td><%= unit.code %></td>
+          <td><%= unit.partner.name if unit.partner %></td>
+          <td><%= unit.standard_price  %></td>
+          <td><%= link_to '<i class="icon-trash"></i>'.html_safe, [@tower, unit], method: :delete, data: { confirm: 'Are you sure?' } unless unit.contract %></td>
+        </tr>
+      <% end %>
+      <tr class="info">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+  <div class="span4 offset2">
+    <h1>النماذج المباعة</h1>
+    <table class="table table-bordered table-hover">
+      <tr>
+        <th>رقم الوحدة</th>
+        <th>المشتري</th>
+        <th>حصة</th>
+        <th>سعر المتر</th>
+        <th>اجمالي السعر</th>
+      </tr>
+    <% @unit_floors_sold.each do |floor, units| %>
+      <% units.each do |unit| %>
+        <tr>
+          <td><%= unit.code %></td>
+          
+          <td><%= link_to unit.contract.buyer_name, tower_contract_path(unit.tower, unit.contract) %></td>
+          <td><%= unit.partner.name if unit.partner %></td>
+          <td><%= number_to_currency(unit.contract.meter_price,unit: "", precision: 0) if unit.contract.meter_price %></td>
+          <td><%= number_to_currency(unit.contract.total_price,unit: "", precision: 0) if unit.contract.total_price %></td>
+        </tr>
+      <% end %>
+      <tr class="info">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+</div>

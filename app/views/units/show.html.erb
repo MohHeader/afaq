@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Number:</b>
+  <%= @unit.number %>
+</p>
+
+
+
+<p>
+  <b>Tower:</b>
+  <%= @unit.tower_id %>
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_tower_unit_path(@unit.tower_id,@unit) %> |
+<%= link_to 'Back', tower_path(@unit.tower_id) %>

@@ -1,0 +1,14 @@
+﻿<h1>توزيع الوحدات على الشركاء</h1>
+
+<%= form_tag update_individual_tower_path(@tower), :method => :put do %>
+  <% @unit_floors.each do |floor, units| %>
+    <% units.each do |unit| %>
+      <%= fields_for "units[]", unit do |f| %>
+        <%= f.text_field :code,:readonly => true %>
+        <%= f.select :partner_id, @tower.partners.all.map{ |c| [c.name, c.id] } %>
+        </br>
+      <% end %>
+    <% end %>
+  <% end %>
+  <p><%= submit_tag "توزيع الشقق" %></p>
+<% end %>
